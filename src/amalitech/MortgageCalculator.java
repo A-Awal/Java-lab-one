@@ -1,8 +1,11 @@
 package amalitech;
 
-import javax.sound.midi.Soundbank;
+import amalitech.Utils.InterestRate;
+import amalitech.Utils.NumberOfPayments;
+import amalitech.Utils.MortGageEstimator;
+import amalitech.Utils.Principal;
+
 import java.text.NumberFormat;
-import java.util.Scanner;
 
 /**
  * Building A Mortgage Calculator
@@ -27,59 +30,54 @@ public class MortgageCalculator {
      * */
     public static void main(String...args){
 
-        final byte MONTHS_IN_YEAR=12;
-        final byte PERCENT=100;
-        int principal=0;
-        Scanner scanner=new Scanner(System.in);
+        MortGageEstimator mEstimator = new MortGageEstimator();
 
-        //How Could We Add The Error handling??
-        while(true) {
-            System.out.println("Principal:");
-            //The Scope Of variable principle should be declared outside the while block? Why?
-            principal = scanner.nextInt();
-            if(principal>1000 && principal<=1_000_000)
-            break;
-            System.out.println("Enter A Value Between 1000 and 1000000");
-        }
+        double mortgage =  mEstimator.getUserInput();
 
-        //How Can we Add The Error handling Here
-        System.out.println("Annual Interest Rate:");
-        float annualInterestRate=scanner.nextFloat();
-        //We need to avoid any implicit value: 4,6 for code readability? Meaningfull & Descriptive Words
-        float monthlyInterest=annualInterestRate/PERCENT/MONTHS_IN_YEAR;
-
-        //How can We Add The Error Handling Here?
-        System.out.println("Period(Years):");
-        byte years=scanner.nextByte();
-        int numberOfPayments=years*MONTHS_IN_YEAR;
-
-        //How can We Add The Error Handling Here?
-        double mortgage=principal*(monthlyInterest*Math.pow(1+monthlyInterest,numberOfPayments))/(Math.pow(1+monthlyInterest,numberOfPayments)-1);
         String mortgageFormatted= NumberFormat.getCurrencyInstance().format(mortgage);
         System.out.println("Mortgage:"+mortgageFormatted);
+        
+    //     Scanner scanner=new Scanner(System.in);
 
-        //Challenge #2 - Let's increase the readability of  this code
-        //Does this program has a number of problem : Input validation???
-        //What if You Pass Unexpected Input??String?? or negative values?
-        //It's now time to use <<Conditional statement now come help us to solve this>>
+    //     //How Could We Add The Error handling??
+    //     while(true) {
+    //         System.out.println("Principal:");
+    //         //The Scope Of variable principle should be declared outside the while block? Why?
+    //         principal = scanner.nextInt();
+    //         if(principal>1000 && principal<=1_000_000)
+    //         break;
+    //         System.out.println("Enter A Value Between 1000 and 1000000");
+    //     }
 
-        // Next Challenge: when codes start getting too long, it hurts the maintainability!
-        //We need to convert the code into smaller and easier chunks using OOP.
-        //Build On This Mortgage Calculator To Enhance The Code Using OOP Best Practices And SOLID Principles
+    //     //How Can we Add The Error handling Here
+    //     System.out.println("Annual Interest Rate:");
+    //     float annualInterestRate=scanner.nextFloat();
+    //     //We need to avoid any implicit value: 4,6 for code readability? Meaningfull & Descriptive Words
+    //     float monthlyInterest=annualInterestRate/PERCENT/MONTHS_IN_YEAR;
 
+    //     //How can We Add The Error Handling Here?
+    //     System.out.println("Period(Years):");
+    //     byte years=scanner.nextByte();
+    //     int numberOfPayments=years*MONTHS_IN_YEAR;
 
+    //     //How can We Add The Error Handling Here?
+    //     double mortgage=principal*(monthlyInterest*Math.pow(1+monthlyInterest,numberOfPayments))/(Math.pow(1+monthlyInterest,numberOfPayments)-1);
+    //     String mortgageFormatted= NumberFormat.getCurrencyInstance().format(mortgage);
+    //     System.out.println("Mortgage:"+mortgageFormatted);
 
+    //     //Challenge #2 - Let's increase the readability of  this code
+    //     //Does this program has a number of problem : Input validation???
+    //     //What if You Pass Unexpected Input??String?? or negative values?
+    //     //It's now time to use <<Conditional statement now come help us to solve this>>
 
+    //     // Next Challenge: when codes start getting too long, it hurts the maintainability!
+    //     //We need to convert the code into smaller and easier chunks using OOP.
+    //     //Build On This Mortgage Calculator To Enhance The Code Using OOP Best Practices And SOLID Principles
 
-
-
-
-
-
-
-
-
-
+    //    
 
     }
+
+    
+
 }
